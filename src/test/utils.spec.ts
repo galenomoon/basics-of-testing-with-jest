@@ -11,7 +11,7 @@ describe('Utils test suite', () => {
     const expected = 'ABC'
 
     // act
-    const actual = toUpperCase('abc')
+    const actual = sut('abc')
 
     // assert
     expect(actual).toBe(expected);
