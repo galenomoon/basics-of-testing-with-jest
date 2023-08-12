@@ -13,6 +13,9 @@ describe('Utils test suite', () => {
       console.log('Setup')
     })
 
+    beforeAll(() => 'TEST-DATABASE Connection!')
+    afterAll(() => 'TEST-DATABASE Teardown!')
+
     // teardown!
     afterEach(() => {
       // clearing mocks or the test.db
