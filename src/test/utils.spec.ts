@@ -3,7 +3,7 @@ import { toUpperCase, getStringInfo, StringUtils } from "../app/utils"
 describe('Utils test suite', () => {
 
 
-  describe.only('StringUtils tests', () => {
+  describe('StringUtils tests', () => {
 
     let sut: StringUtils
 
@@ -13,8 +13,8 @@ describe('Utils test suite', () => {
       console.log('Setup')
     })
 
-    beforeAll(() => 'TEST-DATABASE Connection!')
-    afterAll(() => 'TEST-DATABASE Teardown!')
+    // beforeAll(() => 'TEST-DATABASE Connection!')
+    // afterAll(() => 'TEST-DATABASE Teardown!')
 
     // teardown!
     afterEach(() => {
@@ -22,63 +22,86 @@ describe('Utils test suite', () => {
       console.log('Teardown')
     })
 
+    it.todo('Some test that I have to do')
+
     it('Should return correct uppercase', () => {
-      //arrange
       const expected = 'ABC'
-
-      //act
       const actual = sut.toUpperCase('abc')
-
-      //assert
       expect(actual).toBe(expected)
       console.log('Test')
     })
-  })
 
-  // Structure of a properly written unit test:
-  //   AAA principles: [arrange, act, assert]
-  //   We have also Setup and Teardown, but we're gonna cover them in the future
-  it('should return uppercase of valid string', () => {
-    // arrange:
-    const sut = toUpperCase; // System under test
-    const expected = 'ABC'
+    describe('Testing for errors', () => {
+      it('Should throw error on invalid argument | function', () => {
+        function expectedError() {
+          return sut.toUpperCase('')
+        }
+        expect(expectedError).toThrow()
+        expect(expectedError).toThrowError('Invalid argument')
+      })
 
-    // act
-    const actual = sut('abc')
+      it('Should throw error on invalid argument | arrow function', () =>
+        expect(() => sut.toUpperCase('')).toThrowError('Invalid argument')
+      )
 
-    // assert
-    expect(actual).toBe(expected);
-  })
-
-  it('should return info for a valid string', () => {
-    const actual = getStringInfo('Galeno')
-
-    // When we're working with primitive types,
-    //  we'll be using toBe() as the matcher operation
-    expect(actual.lowerCase).toBe('galeno')
-
-    // When we're NOT working with primitive types (objects, arrays, etc),
-    // we'll be using toEqual() as the matcher operation
-    expect(actual.extraInfo).toEqual({})
-
-    expect(actual.characters.length).toBe(6)
-    expect(actual.characters).toHaveLength(6) // Cleaner version
-
-    expect(actual.characters).toEqual(['G', 'a', 'l', 'e', 'n', 'o'])
-    expect(actual.characters).toContain<string>('G') // Cleaner version
-
-    expect(actual.characters).toEqual(expect.arrayContaining(['l', 'e', 'n', 'o', 'G', 'a']))
-
-    expect(actual.extraInfo).not.toBe(undefined)
-    expect(actual.extraInfo).not.toBeUndefined()
-    expect(actual.extraInfo).toBeDefined()
-    expect(actual.extraInfo).toBeTruthy()
+      it('Should throw error on invalid argument | try catch', (done) => { //3. I need this...
+        try {
+          sut.toUpperCase('') //2.  success
+          done("Error on try if it doesn't to be like I expect") //4. create a new error msg
+        } catch (error) {  //1. that's not the better way to tests some Error!!!!
+          expect(error).toBeInstanceOf(Error)
+          expect(error).toHaveProperty('message', 'Invalid argument') //2. success too :/
+          done() // 5. then put here so.. that's not good (I think)
+        }
+      })
+    })
   })
 
 
-  //Multiple Tests Structure
+  describe('Learning AAA Principles', () => {
 
-  describe("getStringInfo for arg 'Galeno' should", () => {
+    // Structure of a properly written unit test:
+    //   AAA principles: [arrange, act, assert]
+    //   We have also Setup and Teardown, but we're gonna cover them in the future
+    it('should return uppercase of valid string', () => {
+      // arrange:
+      const sut = toUpperCase; // System under test
+      const expected = 'ABC'
+
+      // act
+      const actual = sut('abc')
+
+      // assert
+      expect(actual).toBe(expected);
+    })
+
+    it('should return info for a valid string', () => {
+      const actual = getStringInfo('Galeno')
+
+      // When we're working with primitive types,
+      //  we'll be using toBe() as the matcher operation
+      expect(actual.lowerCase).toBe('galeno')
+
+      // When we're NOT working with primitive types (objects, arrays, etc),
+      // we'll be using toEqual() as the matcher operation
+      expect(actual.extraInfo).toEqual({})
+
+      expect(actual.characters.length).toBe(6)
+      expect(actual.characters).toHaveLength(6) // Cleaner version
+
+      expect(actual.characters).toEqual(['G', 'a', 'l', 'e', 'n', 'o'])
+      expect(actual.characters).toContain<string>('G') // Cleaner version
+
+      expect(actual.characters).toEqual(expect.arrayContaining(['l', 'e', 'n', 'o', 'G', 'a']))
+
+      expect(actual.extraInfo).not.toBe(undefined)
+      expect(actual.extraInfo).not.toBeUndefined()
+      expect(actual.extraInfo).toBeDefined()
+      expect(actual.extraInfo).toBeTruthy()
+    })
+  })
+
+  describe("Multiple Tests Structure | getStringInfo for arg 'Galeno' should", () => {
     test('return right length', () => {
       const actual = getStringInfo('Galeno')
       expect(actual.characters).toHaveLength(6)
@@ -114,9 +137,7 @@ describe('Utils test suite', () => {
     })
   })
 
-  //Parametrized tests
-
-  describe('toUpperCase examples', () => {
+  describe('Parametrized tests | toUpperCase examples', () => {
     it.each([
       { input: 'abc', expected: 'ABC' },
       { input: 'Galeno', expected: 'GALENO' },
