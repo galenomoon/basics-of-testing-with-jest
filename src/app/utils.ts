@@ -1,3 +1,11 @@
+
+
+export class StringUtils {
+  public toUpperCase(str: string): string {
+    return toUpperCase(str);
+  }
+}
+
 export function toUpperCase(str: string): string {
   return str.toUpperCase();
 }
@@ -11,7 +19,7 @@ export type stringInfo = {
 }
 
 
-export function getStringInfo(string: string): stringInfo{
+export function getStringInfo(string: string): stringInfo {
   return {
     lowerCase: string.toLowerCase(),
     upperCase: toUpperCase(string),

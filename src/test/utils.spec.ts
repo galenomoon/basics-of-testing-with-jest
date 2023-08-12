@@ -1,10 +1,41 @@
-import { toUpperCase, getStringInfo } from "../app/utils"
+import { toUpperCase, getStringInfo, StringUtils } from "../app/utils"
 
 describe('Utils test suite', () => {
+
+
+  describe.only('StringUtils tests', () => {
+
+    let sut: StringUtils
+
+    // setup!
+    beforeEach(() => {
+      sut = new StringUtils()
+      console.log('Setup')
+    })
+
+    // teardown!
+    afterEach(() => {
+      // clearing mocks or the test.db
+      console.log('Teardown')
+    })
+
+    it('Should return correct uppercase', () => {
+      //arrange
+      const expected = 'ABC'
+
+      //act
+      const actual = sut.toUpperCase('abc')
+
+      //assert
+      expect(actual).toBe(expected)
+      console.log('Test')
+    })
+  })
+
   // Structure of a properly written unit test:
   //   AAA principles: [arrange, act, assert]
   //   We have also Setup and Teardown, but we're gonna cover them in the future
-  it.skip('should return uppercase of valid string', () => {
+  it('should return uppercase of valid string', () => {
     // arrange:
     const sut = toUpperCase; // System under test
     const expected = 'ABC'
@@ -16,7 +47,7 @@ describe('Utils test suite', () => {
     expect(actual).toBe(expected);
   })
 
-  it.skip('should return info for a valid string', () => {
+  it('should return info for a valid string', () => {
     const actual = getStringInfo('Galeno')
 
     // When we're working with primitive types,
@@ -82,14 +113,14 @@ describe('Utils test suite', () => {
 
   //Parametrized tests
 
-  describe.only('toUpperCase examples', () => {
+  describe('toUpperCase examples', () => {
     it.each([
       { input: 'abc', expected: 'ABC' },
       { input: 'Galeno', expected: 'GALENO' },
-    ])('$input toUpperCase should be $expected', ({input, expected}) => {
+    ])('$input toUpperCase should be $expected', ({ input, expected }) => {
       const actual = toUpperCase(input)
-      
-      expect(actual).toBe(expected) 
+
+      expect(actual).toBe(expected)
     })
   })
 })
