@@ -12,7 +12,7 @@ This repository is designed to help you learn unit testing for TypeScript and No
 ---
 
 
-3. **Install Dependencies**: Install the necessary dependencies for testing with Jest:
+2. **Install Dependencies**: Install the necessary dependencies for testing with Jest:
 
    ```bash
    npm i -D typescript jest ts-jest @types/ts-jest ts-node
@@ -20,7 +20,7 @@ This repository is designed to help you learn unit testing for TypeScript and No
 ---
 
 
-4. **Configure Jest**:
+3. **Configure Jest**:
    - Initiate the Jest configuration using the following command:
 
      ```bash
@@ -45,7 +45,7 @@ This repository is designed to help you learn unit testing for TypeScript and No
      export default config;
      ```
 
-5. **Update `package.json`**:
+4. **Update `package.json`**:
    Add the following script to your `package.json` file to run tests using Jest:
 
    ```json
@@ -55,7 +55,7 @@ This repository is designed to help you learn unit testing for TypeScript and No
 ---
 
 
-6. **Create a `tsconfig.json`**:
+5. **Create a `tsconfig.json`**:
    Create a `tsconfig.json` file in your project's root directory with the following content:
 
    ```json
