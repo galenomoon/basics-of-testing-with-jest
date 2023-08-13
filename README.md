@@ -4,9 +4,7 @@ This repository is designed to help you learn unit testing for TypeScript and No
 
 ## Getting Started
 
-1. **Clone the Repository**: Start by cloning this repository to your local machine.
-
-2. **Initialize Your Project**: Use the following commands to set up your project with TypeScript:
+1. **Initialize Your Project**: Use the following commands to set up your project with TypeScript:
 
    ```bash
    npm init -y
