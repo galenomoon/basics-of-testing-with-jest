@@ -15,7 +15,7 @@ This repository is designed to help you learn unit testing for TypeScript and No
 2. **Install Dependencies**: Install the necessary dependencies for testing with Jest:
 
    ```bash
-   npm i -D typescript jest ts-jest @types/ts-jest ts-node
+   npm i -D typescript jest ts-jest @types/jest ts-node
    ```
 ---
 
